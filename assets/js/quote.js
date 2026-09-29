@@ -32,6 +32,10 @@
       summary.hidden = false;
       summary.querySelector("[data-summary-route]").textContent = `${inputs.origin} → ${inputs.destination}`;
       summary.querySelector("[data-summary-weight]").textContent = `${inputs.weightKg} kg`;
+      const packageEl = summary.querySelector("[data-summary-package]");
+      if (packageEl) packageEl.textContent = inputs.packageType;
+      const dimensionsEl = summary.querySelector("[data-summary-dimensions]");
+      if (dimensionsEl) dimensionsEl.textContent = inputs.dimensions;
     }
   }
 
