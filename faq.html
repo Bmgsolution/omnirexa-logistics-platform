@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ | OmniRexa Logistics &amp; Security</title>
+  <meta name="description" content="Frequently asked questions about shipping, tracking, payments, delivery and security at OmniRexa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+  <style>
+    details.faq-item { background:#fff; border:1px solid rgba(11,18,32,0.08); border-radius:var(--radius-md); padding:1rem 1.25rem; margin-bottom:0.85rem; }
+    details.faq-item summary { cursor:pointer; font-weight:700; list-style:none; }
+    details.faq-item summary::-webkit-details-marker { display:none; }
+    details.faq-item p { margin:0.75rem 0 0; color:var(--text-on-light-muted); }
+  </style>
+</head>
+<body data-page="faq">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div data-include="header"></div>
+
+  <main id="main">
+    <section class="page-header">
+      <div class="bg-grid" aria-hidden="true"></div>
+      <div class="container" style="position:relative; z-index:1;">
+        <span class="eyebrow">FAQ</span>
+        <h1>Frequently Asked Questions</h1>
+        <p>Answers to common questions about shipping, tracking, payments, delivery and cargo security.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="max-width:780px;">
+        <details class="faq-item" open>
+          <summary>How do I track my shipment?</summary>
+          <p>Enter your tracking number (e.g. GSL-2026-847291-XP) on the <a href="tracking.html">tracking portal</a> or in the homepage hero widget to view live-style status, timeline and route.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is the tracking data on this site real-time?</summary>
+          <p>No. This is a prototype using demo/sample data and frontend animation to simulate what a real-time tracking experience would look like. It is not connected to a live GPS or carrier feed.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What shipping methods are available?</summary>
+          <p>Standard Road, Express, Air Freight, Sea Freight, and Road Freight — each with different estimated transit times, shown on the <a href="shipping.html">shipping page</a>.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do I get a shipping quote?</summary>
+          <p>Use the quote calculator on the <a href="shipping.html#quote">shipping page</a> or inside your customer dashboard. Estimates are generated from demo pricing logic.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How is my cargo kept secure?</summary>
+          <p>OmniRexa's security services include GPS-style monitoring, tamper detection, secure warehousing, and driver verification — see the <a href="security.html">security page</a> for details.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I choose delivery preferences like signature confirmation?</summary>
+          <p>Yes — when creating a shipment in the customer dashboard, you can select delivery preferences such as signature required or photo confirmation.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What payment methods are supported?</summary>
+          <p>This prototype does not process real payments. Invoices and payment records shown in the dashboards are sample data for demonstration.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What happens if my shipment is delayed?</summary>
+          <p>Delayed shipments are flagged in the tracking timeline with a distinct status color, and (in production) would trigger email/SMS/push notifications.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

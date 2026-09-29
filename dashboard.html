@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customer Dashboard | OmniRexa Logistics &amp; Security</title>
+  <meta name="description" content="OmniRexa customer dashboard prototype: shipments, tracking, quotes, documents, invoices, notifications and settings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body data-page="dashboard">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div data-include="header"></div>
+
+  <main id="main">
+    <div class="dashboard-shell" data-app="customer">
+      <aside class="dashboard-sidebar" aria-label="Customer dashboard navigation">
+        <div class="side-group">
+          <div class="side-label">Overview</div>
+          <button type="button" class="side-nav-btn is-active" data-target="overview" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>
+            Overview
+          </button>
+        </div>
+        <div class="side-group">
+          <div class="side-label">Shipping</div>
+          <button type="button" class="side-nav-btn" data-target="shipments"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7l9-4 9 4-9 4-9-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 7v10l9 4 9-4V7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>My Shipments</button>
+          <button type="button" class="side-nav-btn" data-target="tracking"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Track Shipment</button>
+          <button type="button" class="side-nav-btn" data-target="create-shipment"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Create Shipment</button>
+          <button type="button" class="side-nav-btn" data-target="quotes"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Shipping Quotes</button>
+        </div>
+        <div class="side-group">
+          <div class="side-label">Records</div>
+          <button type="button" class="side-nav-btn" data-target="documents"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Documents</button>
+          <button type="button" class="side-nav-btn" data-target="invoices"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Invoices</button>
+          <button type="button" class="side-nav-btn" data-target="notifications"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v4M5 8a7 7 0 0114 0c0 4 1.5 5.5 1.5 5.5H3.5S5 12 5 8z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Notifications</button>
+          <button type="button" class="side-nav-btn" data-target="addresses"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-11.5A7 7 0 105 9.5C5 14.5 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Saved Addresses</button>
+        </div>
+        <div class="side-group">
+          <div class="side-label">Account</div>
+          <button type="button" class="side-nav-btn" data-target="support"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.6-2.2 1.8-2.2 3.3M12 17h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Support</button>
+          <button type="button" class="side-nav-btn" data-target="settings"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M4 12h2m12 0h2M12 4v2m0 12v2M6.3 6.3l1.4 1.4m8.6 8.6l1.4 1.4M6.3 17.7l1.4-1.4m8.6-8.6l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Account Settings</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-main">
+        <div class="dashboard-topbar">
+          <h1 id="dashboardHeading">Overview</h1>
+          <div style="display:flex; gap:0.75rem;">
+            <button type="button" class="btn btn-primary btn-sm" data-jump-to="create-shipment">New Shipment</button>
+          </div>
+        </div>
+
+        <!-- Overview -->
+        <section class="dashboard-panel is-active" id="panel-overview" aria-labelledby="dashboardHeading">
+          <span class="badge badge-demo">Sample account data</span>
+          <div class="grid grid-4" style="margin-top:1rem;">
+            <div class="stat-card">
+              <div class="stat-top"><span class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M3 7l9-4 9 4-9 4-9-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span></div>
+              <div class="stat-value" id="statActive">0</div>
+              <div class="stat-label">Active Shipments</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-top"><span class="stat-icon gold"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M4 17h16M6 17V9l6-4 6 4v8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span></div>
+              <div class="stat-value" id="statInTransit">0</div>
+              <div class="stat-label">In Transit</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-top"><span class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+              <div class="stat-value" id="statDelivered">0</div>
+              <div class="stat-label">Delivered</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-top"><span class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+              <div class="stat-value" id="statDelayed">0</div>
+              <div class="stat-label">Delayed</div>
+            </div>
+          </div>
+
+          <div class="grid" style="grid-template-columns: 1.4fr 0.6fr; margin-top:1.5rem;">
+            <div class="chart-card">
+              <h3>Shipment activity (last 6 months)</h3>
+              <div class="bar-chart" id="activityChart"></div>
+            </div>
+            <div class="chart-card text-center">
+              <h3>Pending Pickup</h3>
+              <div class="stat-value" id="statPending" style="font-size:2.6rem;">0</div>
+              <p style="color:var(--text-on-light-muted); margin:0;">Shipments awaiting carrier pickup</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Shipments -->
+        <section class="dashboard-panel" id="panel-shipments">
+          <span class="badge badge-demo">Sample shipments</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Tracking #</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Route</th><th scope="col">ETA</th><th scope="col"></th></tr></thead>
+              <tbody id="shipmentsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Tracking -->
+        <section class="dashboard-panel" id="panel-tracking">
+          <span class="badge badge-demo">Demo lookup</span>
+          <form id="trackingForm" novalidate style="margin:1rem 0; max-width:560px; display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <div class="field" style="flex:1 1 260px; margin-bottom:0;">
+              <label for="trackInput">Tracking Number / AWB / Shipment ID</label>
+              <input type="text" id="trackInput" name="trackingNumber" placeholder="e.g. GSL-2026-847291-XP" autocomplete="off" />
+            </div>
+            <div style="align-self:flex-end;"><button type="submit" class="btn btn-primary">Track</button></div>
+          </form>
+          <button type="button" class="btn btn-ghost btn-sm" data-demo-fill style="padding-left:0; color:var(--color-blue-dark);">Use demo tracking number</button>
+          <div style="margin-top:1.5rem;">
+            <div id="trackingEmpty" class="card text-center"><p style="margin:0;">Enter a tracking number to view details.</p></div>
+            <div id="trackingNotFound" class="card text-center" hidden><p style="margin:0;">No demo shipment found for "<strong data-query></strong>".</p></div>
+            <div id="trackingResult" hidden></div>
+          </div>
+        </section>
+
+        <!-- Create Shipment -->
+        <section class="dashboard-panel" id="panel-create-shipment">
+          <span class="badge badge-demo">Client-side demo — generates a mock tracking number</span>
+          <form id="createShipmentForm" class="card" style="margin-top:1rem;" novalidate>
+            <fieldset>
+              <legend>Sender Information</legend>
+              <div class="field-row">
+                <div class="field"><label for="senderName">Sender name</label><input type="text" id="senderName" name="senderName" required /></div>
+                <div class="field"><label for="senderPhone">Sender phone</label><input type="tel" id="senderPhone" name="senderPhone" required /></div>
+              </div>
+              <div class="field"><label for="pickupAddress">Pickup address</label><input type="text" id="pickupAddress" name="pickupAddress" required /></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Receiver Information</legend>
+              <div class="field-row">
+                <div class="field"><label for="receiverName">Receiver name</label><input type="text" id="receiverName" name="receiverName" required /></div>
+                <div class="field"><label for="receiverPhone">Receiver phone</label><input type="tel" id="receiverPhone" name="receiverPhone" required /></div>
+              </div>
+              <div class="field"><label for="deliveryAddress">Delivery address</label><input type="text" id="deliveryAddress" name="deliveryAddress" required /></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Package Details</legend>
+              <div class="field-row">
+                <div class="field"><label for="packageType">Package type</label>
+                  <select id="packageType" name="packageType"><option>Parcel</option><option>Pallet</option><option>Crate</option><option>Container</option><option>Document</option></select>
+                </div>
+                <div class="field"><label for="weight">Weight (kg)</label><input type="number" id="weight" name="weight" min="0.1" step="0.1" value="10" required /></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label for="dimensions">Dimensions (L×W×H cm)</label><input type="text" id="dimensions" name="dimensions" placeholder="40 × 30 × 25" /></div>
+                <div class="field"><label for="quantity">Quantity</label><input type="number" id="quantity" name="quantity" min="1" value="1" /></div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Shipping Options</legend>
+              <div class="field-row">
+                <div class="field"><label for="method">Shipping method</label>
+                  <select id="method" name="method">
+                    <option value="standard">Standard Road</option>
+                    <option value="express">Express</option>
+                    <option value="air">Air Freight</option>
+                    <option value="sea">Sea Freight</option>
+                    <option value="road">Road Freight</option>
+                  </select>
+                </div>
+                <div class="field"><label for="pickupDate">Pickup date</label><input type="date" id="pickupDate" name="pickupDate" /></div>
+              </div>
+              <div class="field"><label for="deliveryPreference">Delivery preference</label>
+                <select id="deliveryPreference" name="deliveryPreference"><option>Leave at door</option><option>Signature required</option><option>Photo confirmation</option></select>
+              </div>
+              <div class="checkbox-row" style="margin-bottom:0.75rem;"><input type="checkbox" id="insurance" name="insurance" /><label for="insurance" style="margin:0;">Add cargo insurance</label></div>
+              <div class="checkbox-row" style="margin-bottom:0.75rem;"><input type="checkbox" id="specialHandling" name="specialHandling" /><label for="specialHandling" style="margin:0;">Requires special handling (fragile/hazardous)</label></div>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary btn-block">Create Shipment</button>
+          </form>
+
+          <div id="createShipmentResult" style="margin-top:1.5rem;" hidden></div>
+        </section>
+
+        <!-- Quotes -->
+        <section class="dashboard-panel" id="panel-quotes">
+          <span class="badge badge-demo">Demo pricing logic</span>
+          <form id="quoteForm" class="card" style="margin-top:1rem;" novalidate>
+            <div class="field-row">
+              <div class="field"><label for="dqOrigin">Origin</label><input type="text" id="dqOrigin" name="origin" placeholder="Accra, Ghana" /></div>
+              <div class="field"><label for="dqDestination">Destination</label><input type="text" id="dqDestination" name="destination" placeholder="London, United Kingdom" /></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="dqWeight">Weight (kg)</label><input type="number" id="dqWeight" name="weight" min="0.1" step="0.1" value="20" /></div>
+              <div class="field"><label for="dqMethod">Shipping method</label>
+                <select id="dqMethod" name="method"><option value="standard">Standard Road</option><option value="express">Express</option><option value="air">Air Freight</option><option value="sea">Sea Freight</option><option value="road">Road Freight</option></select>
+              </div>
+            </div>
+            <div class="checkbox-row" style="margin-bottom:1rem;"><input type="checkbox" id="dqInsurance" name="insurance" /><label for="dqInsurance" style="margin:0;">Add cargo insurance</label></div>
+            <button type="submit" class="btn btn-gold">Calculate Quote</button>
+          </form>
+          <div id="quoteSummary" class="text-center" hidden style="margin-top:1rem;"><p>Route: <strong data-summary-route></strong> · Weight: <strong data-summary-weight></strong> · Package: <strong data-summary-package></strong> · Dimensions: <strong data-summary-dimensions></strong></p></div>
+          <div id="quoteOptions" class="grid grid-3" style="margin-top:1rem;"></div>
+        </section>
+
+        <!-- Documents -->
+        <section class="dashboard-panel" id="panel-documents">
+          <span class="badge badge-demo">Sample documents</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Document</th><th scope="col">Shipment</th><th scope="col">Type</th><th scope="col">Uploaded</th><th scope="col"></th></tr></thead>
+              <tbody>
+                <tr><td>Commercial Invoice</td><td>SHP-100234</td><td>PDF</td><td>26 Sep 2026</td><td><button class="btn btn-outline btn-sm" type="button" disabled>Download</button></td></tr>
+                <tr><td>Bill of Lading</td><td>SHP-100198</td><td>PDF</td><td>19 Sep 2026</td><td><button class="btn btn-outline btn-sm" type="button" disabled>Download</button></td></tr>
+                <tr><td>Proof of Delivery</td><td>SHP-100301</td><td>Image</td><td>24 Sep 2026</td><td><button class="btn btn-outline btn-sm" type="button" disabled>Download</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:1rem; color:var(--text-on-light-muted); font-size:0.85rem;">Document downloads are disabled in this prototype. A production build would connect this to secure file storage.</p>
+        </section>
+
+        <!-- Invoices -->
+        <section class="dashboard-panel" id="panel-invoices">
+          <span class="badge badge-demo">Sample invoices</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Invoice #</th><th scope="col">Shipment</th><th scope="col">Amount</th><th scope="col">Status</th><th scope="col">Date</th></tr></thead>
+              <tbody id="invoicesTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Notifications -->
+        <section class="dashboard-panel" id="panel-notifications">
+          <span class="badge badge-demo">Sample notifications</span>
+          <div id="notificationsList" style="margin-top:1rem;"></div>
+        </section>
+
+        <!-- Addresses -->
+        <section class="dashboard-panel" id="panel-addresses">
+          <span class="badge badge-demo">Sample addresses</span>
+          <div class="grid grid-3" id="addressesList" style="margin-top:1rem;"></div>
+        </section>
+
+        <!-- Support -->
+        <section class="dashboard-panel" id="panel-support">
+          <div class="grid grid-2">
+            <div class="card">
+              <h3>Contact Support</h3>
+              <p style="color:var(--text-on-light-muted);">This form is a UI prototype and does not send a real message.</p>
+              <form id="supportForm" novalidate>
+                <div class="field"><label for="supportSubject">Subject</label><input type="text" id="supportSubject" name="subject" required /></div>
+                <div class="field"><label for="supportMessage">Message</label><textarea id="supportMessage" name="message" rows="4" required></textarea></div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </form>
+            </div>
+            <div class="card">
+              <h3>Support Resources</h3>
+              <ul style="padding-left:1.1rem; color:var(--text-on-light-muted); display:flex; flex-direction:column; gap:0.6rem;">
+                <li><a href="faq.html">Frequently asked questions</a></li>
+                <li><a href="tracking.html">Tracking help</a></li>
+                <li><a href="policies.html#shipping">Shipping policies</a></li>
+                <li><a href="contact.html">Contact the OmniRexa team</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Settings -->
+        <section class="dashboard-panel" id="panel-settings">
+          <div class="card">
+            <h3>Notification Preferences</h3>
+            <div class="pref-row">
+              <span>Email notifications</span>
+              <label class="switch"><input type="checkbox" class="settings-toggle" data-label="Email notifications" checked /><span class="slider"></span></label>
+            </div>
+            <div class="pref-row">
+              <span>SMS notifications</span>
+              <label class="switch"><input type="checkbox" class="settings-toggle" data-label="SMS notifications" /><span class="slider"></span></label>
+            </div>
+            <div class="pref-row">
+              <span>Push notifications</span>
+              <label class="switch"><input type="checkbox" class="settings-toggle" data-label="Push notifications" checked /><span class="slider"></span></label>
+            </div>
+            <div class="pref-row" style="border-bottom:none;">
+              <span>Two-factor authentication</span>
+              <label class="switch"><input type="checkbox" class="settings-toggle" data-label="Two-factor authentication" /><span class="slider"></span></label>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div data-include="footer"></div>
+
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/tracking.js"></script>
+  <script src="assets/js/quote.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
