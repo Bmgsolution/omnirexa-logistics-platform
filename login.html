@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | OmniRexa Logistics &amp; Security</title>
+  <meta name="description" content="Log in to your OmniRexa customer or admin dashboard (demo authentication)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body data-page="login">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div data-include="header"></div>
+
+  <main id="main">
+    <section class="section--midnight" style="min-height:calc(100vh - var(--header-height)); display:flex; align-items:center; position:relative; padding-block:4rem;">
+      <div class="bg-grid" aria-hidden="true"></div>
+      <div class="bg-routes" aria-hidden="true"></div>
+      <div class="container" style="position:relative; z-index:1; max-width:480px;">
+        <div class="glass-panel">
+          <span class="badge badge-demo">Demo authentication — no real accounts</span>
+          <h1 style="font-size:1.6rem; margin:0.75rem 0 0.25rem;">Sign in to OmniRexa</h1>
+          <p style="color:var(--text-on-dark-muted); margin:0 0 1.5rem;">Enter any email/password to preview the customer dashboard, or use the admin toggle for the admin panel.</p>
+
+          <div class="tabs" role="tablist" aria-label="Login type" style="border-color:rgba(255,255,255,0.15);">
+            <button type="button" class="tab-btn is-active" role="tab" aria-selected="true" data-role="customer" style="color:#fff;">Customer</button>
+            <button type="button" class="tab-btn" role="tab" aria-selected="false" data-role="admin" style="color:var(--text-on-dark-muted);">Admin</button>
+          </div>
+
+          <form id="loginForm" novalidate>
+            <div class="field">
+              <label for="loginEmail">Email address</label>
+              <input type="email" id="loginEmail" name="email" placeholder="you@example.com" required />
+            </div>
+            <div class="field">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" name="password" placeholder="••••••••" required minlength="6" />
+              <span class="hint">Any value works in this prototype — authentication is not connected to a real backend.</span>
+            </div>
+            <p class="field-error" id="loginError" role="alert"></p>
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </form>
+          <p style="margin-top:1.25rem; font-size:0.85rem; color:var(--text-on-dark-muted);">No account? This is a prototype — any credentials will sign you in to the demo dashboard.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var role = "customer";
+      var tabs = document.querySelectorAll("[data-role]");
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          role = tab.getAttribute("data-role");
+          tabs.forEach(function (t) {
+            var active = t === tab;
+            t.classList.toggle("is-active", active);
+            t.setAttribute("aria-selected", String(active));
+            t.style.color = active ? "#fff" : "var(--text-on-dark-muted)";
+          });
+        });
+      });
+
+      var form = document.getElementById("loginForm");
+      var error = document.getElementById("loginError");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          error.textContent = "Please enter a valid email and a password of at least 6 characters.";
+          return;
+        }
+        error.textContent = "";
+        window.location.href = role === "admin" ? "admin.html" : "dashboard.html";
+      });
+    });
+  </script>
+</body>
+</html>

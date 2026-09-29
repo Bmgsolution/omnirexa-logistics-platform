@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard | OmniRexa Logistics &amp; Security</title>
+  <meta name="description" content="OmniRexa admin control panel prototype: shipment management, fleet tracking, analytics and security oversight." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body data-page="admin">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div data-include="header"></div>
+
+  <main id="main">
+    <div class="dashboard-shell" data-app="admin">
+      <aside class="dashboard-sidebar" aria-label="Admin dashboard navigation">
+        <div class="side-group">
+          <button type="button" class="side-nav-btn is-active" data-target="dashboard" aria-current="page"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>Dashboard</button>
+          <button type="button" class="side-nav-btn" data-target="shipments"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7l9-4 9 4-9 4-9-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Shipments</button>
+          <button type="button" class="side-nav-btn" data-target="customers"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="9" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg>Customers</button>
+          <button type="button" class="side-nav-btn" data-target="drivers"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Drivers</button>
+          <button type="button" class="side-nav-btn" data-target="vehicles"><svg viewBox="0 0 24 24" fill="none"><path d="M4 17h16M6 17V9l6-4 6 4v8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Vehicles</button>
+          <button type="button" class="side-nav-btn" data-target="warehouses"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Warehouses</button>
+          <button type="button" class="side-nav-btn" data-target="routes"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-11.5A7 7 0 105 9.5C5 14.5 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Routes</button>
+          <button type="button" class="side-nav-btn" data-target="tracking"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Tracking</button>
+          <button type="button" class="side-nav-btn" data-target="security"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l7 3v6c0 5-3.5 8.5-7 11-3.5-2.5-7-6-7-11V5l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Security</button>
+          <button type="button" class="side-nav-btn" data-target="payments"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.6"/></svg>Payments</button>
+          <button type="button" class="side-nav-btn" data-target="invoices"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Invoices</button>
+          <button type="button" class="side-nav-btn" data-target="notifications"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v4M5 8a7 7 0 0114 0c0 4 1.5 5.5 1.5 5.5H3.5S5 12 5 8z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Notifications</button>
+          <button type="button" class="side-nav-btn" data-target="reports"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V10M12 20V4M20 20v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Reports</button>
+          <button type="button" class="side-nav-btn" data-target="support"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.6-2.2 1.8-2.2 3.3M12 17h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Support</button>
+          <button type="button" class="side-nav-btn" data-target="settings"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M4 12h2m12 0h2M12 4v2m0 12v2M6.3 6.3l1.4 1.4m8.6 8.6l1.4 1.4M6.3 17.7l1.4-1.4m8.6-8.6l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Settings</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-main">
+        <div class="dashboard-topbar">
+          <h1 id="adminHeading">Dashboard</h1>
+          <span class="badge badge-demo">Admin prototype — sample data only</span>
+        </div>
+
+        <!-- Dashboard / analytics -->
+        <section class="dashboard-panel is-active" id="admin-dashboard">
+          <div class="grid grid-4">
+            <div class="stat-card"><div class="stat-value" id="adminStatTotal">0</div><div class="stat-label">Total Shipments</div></div>
+            <div class="stat-card"><div class="stat-value" id="adminStatActive">0</div><div class="stat-label">Active Shipments</div></div>
+            <div class="stat-card"><div class="stat-value" id="adminStatDelivered">0</div><div class="stat-label">Delivered</div></div>
+            <div class="stat-card"><div class="stat-value" id="adminStatDelayed">0</div><div class="stat-label">Delayed</div></div>
+          </div>
+          <div class="grid grid-4" style="margin-top:1.25rem;">
+            <div class="stat-card"><div class="stat-value" id="adminStatRevenue">$0</div><div class="stat-label">Revenue (demo)</div></div>
+            <div class="stat-card"><div class="stat-value" id="adminStatCustomers">0</div><div class="stat-label">Customers</div></div>
+            <div class="stat-card"><div class="stat-value" id="adminStatDrivers">0</div><div class="stat-label">Drivers</div></div>
+            <div class="stat-card"><div class="stat-value" id="adminStatVehicles">0</div><div class="stat-label">Vehicles</div></div>
+          </div>
+          <div class="grid" style="grid-template-columns: 1.4fr 0.6fr; margin-top:1.25rem;">
+            <div class="chart-card"><h3>Shipment volume (last 6 months)</h3><div class="bar-chart" id="adminActivityChart"></div></div>
+            <div class="chart-card text-center"><h3>Security Alerts</h3><div class="stat-value" id="adminStatAlerts" style="font-size:2.6rem;">0</div><p style="color:var(--text-on-light-muted); margin:0;">Open alerts requiring review</p></div>
+          </div>
+        </section>
+
+        <!-- Shipments management -->
+        <section class="dashboard-panel" id="admin-shipments">
+          <span class="badge badge-demo">Sample shipment records</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Shipment ID</th><th scope="col">Tracking #</th><th scope="col">Sender</th><th scope="col">Receiver</th><th scope="col">Status</th><th scope="col">Driver</th><th scope="col">Actions</th></tr></thead>
+              <tbody id="adminShipmentsTableBody"></tbody>
+            </table>
+          </div>
+          <p style="margin-top:1rem; color:var(--text-on-light-muted); font-size:0.85rem;">In production, actions here would create/edit shipments, assign drivers &amp; vehicles, update status/location, add tracking events, and flag delays or security incidents.</p>
+        </section>
+
+        <!-- Customers -->
+        <section class="dashboard-panel" id="admin-customers">
+          <span class="badge badge-demo">Sample customers</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Customer</th><th scope="col">Company</th><th scope="col">Shipments</th><th scope="col">Status</th></tr></thead>
+              <tbody>
+                <tr><td>Nyah Boateng</td><td>Kojo Mensah Textiles Ltd.</td><td>14</td><td><span class="badge badge-success">Active</span></td></tr>
+                <tr><td>Van Dijk Import B.V.</td><td>Golden Coast Exports</td><td>27</td><td><span class="badge badge-success">Active</span></td></tr>
+                <tr><td>Adjoa Trading Co.</td><td>Kumasi Craft Cooperative</td><td>6</td><td><span class="badge badge-neutral">Inactive</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Drivers -->
+        <section class="dashboard-panel" id="admin-drivers">
+          <span class="badge badge-demo">Sample fleet data</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Driver</th><th scope="col">Status</th><th scope="col">Vehicle</th><th scope="col">Location</th><th scope="col">Shipment</th><th scope="col">Progress</th></tr></thead>
+              <tbody id="fleetTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Vehicles -->
+        <section class="dashboard-panel" id="admin-vehicles">
+          <span class="badge badge-demo">Sample vehicle registry</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Vehicle #</th><th scope="col">Type</th><th scope="col">Status</th><th scope="col">Driver</th><th scope="col">Location</th></tr></thead>
+              <tbody>
+                <tr><td>OMX-1042</td><td>Cargo Van</td><td><span class="badge badge-info">On Delivery</span></td><td>Kwabena Owusu</td><td>Tema Motorway, GH</td></tr>
+                <tr><td>OMX-2210</td><td>Heavy Truck</td><td><span class="badge badge-success">Available</span></td><td>Ama Serwaa</td><td>Kumasi Depot, GH</td></tr>
+                <tr><td>OMX-1187</td><td>Cargo Van</td><td><span class="badge badge-info">On Delivery</span></td><td>Yaw Darko</td><td>Lomé Distribution Center, TG</td></tr>
+                <tr><td>OMX-3390</td><td>Heavy Truck</td><td><span class="badge badge-danger">Delayed</span></td><td>Efua Mensah</td><td>Aflao Border Post</td></tr>
+                <tr><td>OMX-1560</td><td>Cargo Van</td><td><span class="badge badge-neutral">Offline</span></td><td>Kofi Asante</td><td>Takoradi Depot, GH</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Warehouses -->
+        <section class="dashboard-panel" id="admin-warehouses">
+          <span class="badge badge-demo">Sample facilities</span>
+          <div class="grid grid-3" style="margin-top:1rem;">
+            <div class="card"><h3>Accra Logistics Hub</h3><p style="color:var(--text-on-light-muted);">Accra, Ghana · Capacity 12,000 m² · 24/7 monitored</p></div>
+            <div class="card"><h3>Tema Port Facility</h3><p style="color:var(--text-on-light-muted);">Tema, Ghana · Container yard · Access-controlled</p></div>
+            <div class="card"><h3>London Heathrow Cargo Terminal</h3><p style="color:var(--text-on-light-muted);">London, United Kingdom · Air cargo transfer point</p></div>
+          </div>
+        </section>
+
+        <!-- Routes -->
+        <section class="dashboard-panel" id="admin-routes">
+          <span class="badge badge-demo">Illustrative route visualization</span>
+          <div class="route-panel" style="margin-top:1rem;">
+            <div class="bg-grid"></div>
+            <svg class="route-svg" viewBox="0 0 480 300" role="img" aria-label="Illustrative multi-hub route map">
+              <path class="route-path" d="M60 220 Q220 140 420 70" />
+              <path class="route-path-progress" d="M60 220 Q220 140 420 70" pathLength="500" />
+              <circle class="route-node active" cx="60" cy="220" r="7" />
+              <circle class="route-node active" cx="220" cy="140" r="6" />
+              <circle class="route-node" cx="420" cy="70" r="7" />
+              <text class="route-label" x="40" y="244">Accra Hub</text>
+              <text class="route-label" x="190" y="122">Casablanca Hub</text>
+              <text class="route-label" x="370" y="94">London Hub</text>
+            </svg>
+          </div>
+        </section>
+
+        <!-- Tracking (admin view) -->
+        <section class="dashboard-panel" id="admin-tracking">
+          <span class="badge badge-demo">Admin tracking lookup</span>
+          <p style="color:var(--text-on-light-muted);">Use the public <a href="tracking.html">tracking portal</a> or customer dashboard tracking tab to look up demo shipment GSL-2026-847291-XP.</p>
+        </section>
+
+        <!-- Security -->
+        <section class="dashboard-panel" id="admin-security">
+          <span class="badge badge-demo">Demo security overview</span>
+          <div class="security-status" style="margin-top:1rem; background:rgba(46,204,113,0.1); border-color:rgba(46,204,113,0.35); color:var(--text-on-light);">
+            <span class="status-dot" aria-hidden="true"></span>
+            <div><div class="status-title">Fleet Security Status: SECURE</div><p style="margin:0; color:var(--text-on-light-muted);">0 unresolved incidents across the active fleet.</p></div>
+          </div>
+          <p style="margin-top:1rem;"><a href="security.html" class="btn btn-outline btn-sm">View full security dashboard</a></p>
+        </section>
+
+        <!-- Payments -->
+        <section class="dashboard-panel" id="admin-payments">
+          <span class="badge badge-demo">Sample payment records</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Payment ID</th><th scope="col">Customer</th><th scope="col">Amount</th><th scope="col">Method</th><th scope="col">Status</th></tr></thead>
+              <tbody>
+                <tr><td>PMT-5521</td><td>Kojo Mensah Textiles Ltd.</td><td>$842.50</td><td>Card ending 4242</td><td><span class="badge badge-success">Paid</span></td></tr>
+                <tr><td>PMT-5498</td><td>Golden Coast Exports</td><td>$6,120.00</td><td>Bank transfer</td><td><span class="badge badge-neutral">Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Invoices -->
+        <section class="dashboard-panel" id="admin-invoices">
+          <span class="badge badge-demo">Sample invoices</span>
+          <div class="table-wrap" style="margin-top:1rem; background:#fff;">
+            <table>
+              <thead><tr><th scope="col">Invoice #</th><th scope="col">Shipment</th><th scope="col">Amount</th><th scope="col">Status</th><th scope="col">Date</th></tr></thead>
+              <tbody>
+                <tr><td>INV-88231</td><td>SHP-100234</td><td>$842.50</td><td><span class="badge badge-success">Paid</span></td><td>26 Sep 2026</td></tr>
+                <tr><td>INV-88214</td><td>SHP-100198</td><td>$6,120.00</td><td><span class="badge badge-neutral">Pending</span></td><td>18 Sep 2026</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Notifications -->
+        <section class="dashboard-panel" id="admin-notifications">
+          <span class="badge badge-demo">Sample system notifications</span>
+          <div style="margin-top:1rem;">
+            <div class="notif-item unread"><div><div style="font-weight:600;">3 shipments flagged for delayed status review</div><div style="font-size:0.8rem;color:var(--text-on-light-muted);">1 hour ago</div></div></div>
+            <div class="notif-item"><div><div style="font-weight:600;">Monthly revenue report generated</div><div style="font-size:0.8rem;color:var(--text-on-light-muted);">1 day ago</div></div></div>
+          </div>
+        </section>
+
+        <!-- Reports -->
+        <section class="dashboard-panel" id="admin-reports">
+          <span class="badge badge-demo">Sample analytics</span>
+          <div class="grid grid-2" style="margin-top:1rem;">
+            <div class="chart-card"><h3>Delivery performance</h3><div class="donut-chart" style="--pct:94;"><div class="donut-inner"><strong>94%</strong></div></div><p class="text-center" style="color:var(--text-on-light-muted); margin-top:0.75rem;">On-time delivery rate (demo)</p></div>
+            <div class="chart-card"><h3>Customer satisfaction</h3><div class="donut-chart" style="--pct:88;"><div class="donut-inner"><strong>88%</strong></div></div><p class="text-center" style="color:var(--text-on-light-muted); margin-top:0.75rem;">Satisfaction score (demo)</p></div>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section class="dashboard-panel" id="admin-support">
+          <div class="card">
+            <h3>Audit &amp; Support Log</h3>
+            <ul class="timeline" id="auditList" style="margin-top:1rem;"></ul>
+          </div>
+        </section>
+
+        <!-- Settings -->
+        <section class="dashboard-panel" id="admin-settings">
+          <div class="card">
+            <h3>Platform Settings (placeholder)</h3>
+            <div class="pref-row"><span>Require two-factor authentication for admins</span><label class="switch"><input type="checkbox" checked /><span class="slider"></span></label></div>
+            <div class="pref-row"><span>Enable API rate limiting</span><label class="switch"><input type="checkbox" checked /><span class="slider"></span></label></div>
+            <div class="pref-row" style="border-bottom:none;"><span>Log all admin actions to audit trail</span><label class="switch"><input type="checkbox" checked /><span class="slider"></span></label></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div data-include="footer"></div>
+
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

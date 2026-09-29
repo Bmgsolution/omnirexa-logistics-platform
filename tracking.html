@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Track Your Shipment | OmniRexa Logistics &amp; Security</title>
+  <meta name="description" content="Track your OmniRexa shipment by tracking number, AWB, or shipment ID. Demo tracking portal with sample shipment data." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body data-page="tracking">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div data-include="header"></div>
+
+  <main id="main">
+    <section class="page-header">
+      <div class="bg-grid" aria-hidden="true"></div>
+      <div class="container" style="position:relative; z-index:1;">
+        <span class="eyebrow">Tracking portal</span>
+        <h1>Track Your Shipment</h1>
+        <p>Enter your tracking number, AWB, or shipment ID below. All results shown are demo data for this prototype.</p>
+
+        <form id="trackingForm" novalidate style="margin-top:2rem; max-width:640px;">
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <div class="field" style="flex:1 1 280px; margin-bottom:0;">
+              <label for="trackInput">Tracking Number / AWB / Shipment ID</label>
+              <input type="text" id="trackInput" name="trackingNumber" placeholder="e.g. GSL-2026-847291-XP" autocomplete="off" />
+            </div>
+            <div style="align-self:flex-end;">
+              <button type="submit" class="btn btn-primary">Track Shipment</button>
+            </div>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" data-demo-fill style="margin-top:0.75rem; padding-left:0; color:var(--color-gold);">Use demo tracking number GSL-2026-847291-XP</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section--midnight" style="padding-block:3rem 5rem; position:relative;">
+      <div class="bg-routes" aria-hidden="true"></div>
+      <div class="container" style="position:relative; z-index:1;">
+        <div id="trackingEmpty" class="glass-panel text-center">
+          <p style="margin:0;">Enter a tracking number above to view shipment status, timeline and route. No shipment loaded yet.</p>
+        </div>
+
+        <div id="trackingNotFound" class="glass-panel text-center" hidden>
+          <span class="badge badge-danger">Not found</span>
+          <p style="margin:0.75rem 0 0;">We couldn't find a demo shipment matching "<strong data-query></strong>". This prototype only recognizes a small set of sample tracking numbers — try <strong>GSL-2026-847291-XP</strong>.</p>
+        </div>
+
+        <div id="trackingResult" hidden></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">How tracking works</span>
+          <h2>What powers this tracking experience</h2>
+          <p>This prototype uses local demo data to simulate a real tracking system. It is designed to be swapped for a live backend without changing the interface.</p>
+        </div>
+        <div class="grid grid-4">
+          <div class="card">
+            <div class="icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <h3>Shipment Timeline</h3>
+            <p style="color:var(--text-on-light-muted);">Completed, current, pending and delayed states with timestamps and locations.</p>
+          </div>
+          <div class="card">
+            <div class="icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+            <h3>ETA &amp; Progress</h3>
+            <p style="color:var(--text-on-light-muted);">Estimated delivery dates and a visual progress bar for each shipment.</p>
+          </div>
+          <div class="card">
+            <div class="icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-11.5A7 7 0 105 9.5C5 14.5 12 21 12 21z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.2" stroke="currentColor" stroke-width="1.6"/></svg></div>
+            <h3>Route Visualization</h3>
+            <p style="color:var(--text-on-light-muted);">An animated frontend route illustration — not a live GPS/carrier feed.</p>
+          </div>
+          <div class="card">
+            <div class="icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v4M5 8a7 7 0 0114 0c0 4 1.5 5.5 1.5 5.5H3.5S5 12 5 8z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 18a2.5 2.5 0 005 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+            <h3>Notifications</h3>
+            <p style="color:var(--text-on-light-muted);">Email, SMS and push alerts are configurable in the customer dashboard (demo).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/tracking.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us | OmniRexa Logistics &amp; Security</title>
+  <meta name="description" content="Contact OmniRexa Logistics & Security for shipping, support, and business inquiries." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body data-page="contact">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div data-include="header"></div>
+
+  <main id="main">
+    <section class="page-header">
+      <div class="bg-grid" aria-hidden="true"></div>
+      <div class="container" style="position:relative; z-index:1;">
+        <span class="eyebrow">Contact</span>
+        <h1>We're Here to Help</h1>
+        <p>Reach out about shipments, quotes, security concerns, or general business inquiries. This form is a UI prototype only.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid-2">
+        <form id="contactForm" class="card" novalidate>
+          <div class="field-row">
+            <div class="field"><label for="cName">Full name</label><input type="text" id="cName" name="name" required /></div>
+            <div class="field"><label for="cEmail">Email</label><input type="email" id="cEmail" name="email" required /></div>
+          </div>
+          <div class="field"><label for="cReason">Reason for contact</label>
+            <select id="cReason" name="reason">
+              <option>General inquiry</option>
+              <option>Shipment support</option>
+              <option>Cargo security concern</option>
+              <option>Business partnership</option>
+              <option>Careers</option>
+            </select>
+          </div>
+          <div class="field"><label for="cMessage">Message</label><textarea id="cMessage" name="message" rows="5" required></textarea></div>
+          <p class="field-error" id="contactError" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        </form>
+
+        <div>
+          <div class="card" style="margin-bottom:1.25rem;">
+            <h3>Head Office (sample)</h3>
+            <p style="color:var(--text-on-light-muted);">12 Liberation Road, Accra, Ghana</p>
+          </div>
+          <div class="card" style="margin-bottom:1.25rem;">
+            <h3>Support Hours (sample)</h3>
+            <p style="color:var(--text-on-light-muted);">Monday–Friday, 08:00–20:00 GMT · 24/7 for active security incidents</p>
+          </div>
+          <div class="card">
+            <h3>Other ways to reach us</h3>
+            <p style="color:var(--text-on-light-muted); margin-bottom:0.5rem;">Email: support@omnirexa.example (placeholder)</p>
+            <p style="color:var(--text-on-light-muted); margin:0;">Phone: +233 000 000 000 (placeholder)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("contactForm");
+      var error = document.getElementById("contactError");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          error.textContent = "Please fill in all required fields with valid values.";
+          return;
+        }
+        error.textContent = "";
+        window.OmniRexaToast && window.OmniRexaToast({
+          title: "Message sent (demo)",
+          message: "This prototype does not send real messages yet.",
+          type: "success",
+        });
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>
