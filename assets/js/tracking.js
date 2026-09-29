@@ -5,6 +5,9 @@
 (function () {
   "use strict";
 
+  // Simulated network/API latency before demo results are rendered.
+  const SIMULATED_LOOKUP_DELAY_MS = 500;
+
   const ICONS = {
     completed:
       '<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -150,7 +153,7 @@
       } else {
         renderNotFound(value);
       }
-    }, 500);
+    }, SIMULATED_LOOKUP_DELAY_MS);
   }
 
   function init() {
