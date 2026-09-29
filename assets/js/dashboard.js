@@ -6,34 +6,11 @@
 (function () {
   "use strict";
 
-  function switchPanel(target) {
-    document.querySelectorAll(".dashboard-panel").forEach((panel) => {
-      panel.classList.toggle("is-active", panel.id === `panel-${target}`);
-    });
-    document.querySelectorAll(".side-nav-btn").forEach((btn) => {
-      const isActive = btn.getAttribute("data-target") === target;
-      btn.classList.toggle("is-active", isActive);
-      btn.setAttribute("aria-current", isActive ? "page" : "false");
-    });
-    const heading = document.getElementById("dashboardHeading");
-    const btn = document.querySelector(`.side-nav-btn[data-target="${target}"]`);
-    if (heading && btn) heading.textContent = btn.textContent.trim();
-    window.location.hash = target;
-  }
-
-  function initTabs() {
-    const buttons = document.querySelectorAll(".side-nav-btn[data-target]");
-    if (!buttons.length) return;
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => switchPanel(btn.getAttribute("data-target")));
-    });
-    const initial = (window.location.hash || "").replace("#", "") || "overview";
-    if (document.getElementById(`panel-${initial}`)) {
-      switchPanel(initial);
-    } else {
-      switchPanel("overview");
-    }
-  }
+  const tabs = window.OmniRexaDashboardUI.createTabController({
+    panelPrefix: "panel-",
+    headingId: "dashboardHeading",
+    defaultTarget: "overview",
+  });
 
   function renderStats() {
     const stats = window.OmniRexaMock?.dashboardStats;
@@ -53,19 +30,7 @@
   }
 
   function renderBarChart() {
-    const el = document.getElementById("activityChart");
-    const data = window.OmniRexaMock?.monthlyActivity;
-    if (!el || !data) return;
-    const max = Math.max(...data.map((d) => d.value));
-    el.innerHTML = data
-      .map(
-        (d) => `
-      <div class="bar-col">
-        <div class="bar" style="height:${(d.value / max) * 100}%" title="${d.value} shipments"></div>
-        <span class="bar-label">${d.label}</span>
-      </div>`
-      )
-      .join("");
+    window.OmniRexaDashboardUI.renderBarChart("activityChart", window.OmniRexaMock?.monthlyActivity);
   }
 
   function renderShipmentsTable() {
@@ -213,7 +178,7 @@
 
   function init() {
     if (!document.querySelector(".dashboard-shell")) return;
-    initTabs();
+    tabs.init();
     renderStats();
     renderBarChart();
     renderShipmentsTable();

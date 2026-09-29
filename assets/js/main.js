@@ -93,6 +93,70 @@
     });
   }
 
+  /* ------------------------ Shared dashboard UI helpers ------------------------ */
+  /**
+   * Renders a simple CSS-based bar chart into the target element from an
+   * array of { label, value } points. Shared by the customer and admin
+   * dashboards to avoid duplicating the same markup/logic in both.
+   */
+  function renderBarChart(elementId, data) {
+    const el = document.getElementById(elementId);
+    if (!el || !data || !data.length) return;
+    const max = Math.max(...data.map((d) => d.value));
+    el.innerHTML = data
+      .map(
+        (d) => `
+      <div class="bar-col">
+        <div class="bar" style="height:${(d.value / max) * 100}%" title="${d.value} shipments"></div>
+        <span class="bar-label">${d.label}</span>
+      </div>`
+      )
+      .join("");
+  }
+
+  /**
+   * Creates a side-nav tab controller for a dashboard-style page. `panelPrefix`
+   * is prepended to each `data-target` value to find the matching panel id
+   * (e.g. "panel-" for the customer dashboard, "admin-" for the admin
+   * dashboard). `headingId` is an optional element updated with the active
+   * tab's label. Returns the `switchPanel` function so callers can trigger
+   * a panel switch programmatically (e.g. "jump to create shipment").
+   */
+  function createTabController({ panelPrefix, headingId, defaultTarget }) {
+    function switchPanel(target) {
+      document.querySelectorAll(".dashboard-panel").forEach((panel) => {
+        panel.classList.toggle("is-active", panel.id === `${panelPrefix}${target}`);
+      });
+      document.querySelectorAll(".side-nav-btn").forEach((btn) => {
+        const isActive = btn.getAttribute("data-target") === target;
+        btn.classList.toggle("is-active", isActive);
+        btn.setAttribute("aria-current", isActive ? "page" : "false");
+      });
+      const heading = headingId ? document.getElementById(headingId) : null;
+      const btn = document.querySelector(`.side-nav-btn[data-target="${target}"]`);
+      if (heading && btn) heading.textContent = btn.textContent.trim();
+      window.location.hash = target;
+    }
+
+    function init() {
+      const buttons = document.querySelectorAll(".side-nav-btn[data-target]");
+      if (!buttons.length) return;
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => switchPanel(btn.getAttribute("data-target")));
+      });
+      const initial = (window.location.hash || "").replace("#", "") || defaultTarget;
+      if (document.getElementById(`${panelPrefix}${initial}`)) {
+        switchPanel(initial);
+      } else {
+        switchPanel(defaultTarget);
+      }
+    }
+
+    return { init, switchPanel };
+  }
+
+  window.OmniRexaDashboardUI = { renderBarChart, createTabController };
+
   /* ----------------------------- Init ------------------------------ */
   document.addEventListener("partials:loaded", () => {
     initCounters();
