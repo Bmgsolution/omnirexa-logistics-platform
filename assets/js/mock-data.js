@@ -47,7 +47,7 @@
         },
         {
           state: "completed",
-          title: "Processing &amp; Security Screening",
+          title: "Processing & Security Screening",
           location: "Accra Logistics Hub",
           time: "2026-09-27T07:40:00",
         },

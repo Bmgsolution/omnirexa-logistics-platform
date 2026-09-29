@@ -26,19 +26,22 @@
 
   function buildRouteSvg(route, progress) {
     const { origin, transit, destination } = route;
-    const path = `M ${origin.x} ${origin.y} Q ${transit.x} ${transit.y - 40} ${destination.x} ${destination.y}`;
+    const TRANSIT_Y_OFFSET = 40;
+    const transitArcY = transit.y - TRANSIT_Y_OFFSET;
+    const path = `M ${origin.x} ${origin.y} Q ${transit.x} ${transitArcY} ${destination.x} ${destination.y}`;
     const vehiclePos = progress < 50 ? transit : destination;
+    const vehicleY = vehiclePos === transit ? transitArcY : vehiclePos.y;
     return `
       <svg class="route-svg" viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustrative shipment route from ${origin.label} to ${destination.label}">
         <path class="route-path" d="${path}" />
         <path class="route-path-progress" d="${path}" pathLength="500" />
         <circle class="route-node active" cx="${origin.x}" cy="${origin.y}" r="7" />
-        <circle class="route-node ${progress > 30 ? "active" : ""}" cx="${transit.x}" cy="${transit.y - 40}" r="6" />
+        <circle class="route-node ${progress > 30 ? "active" : ""}" cx="${transit.x}" cy="${transitArcY}" r="6" />
         <circle class="route-node ${progress >= 100 ? "active" : ""}" cx="${destination.x}" cy="${destination.y}" r="7" />
         <text class="route-label" x="${origin.x - 10}" y="${origin.y + 24}">${origin.label}</text>
         <text class="route-label" x="${transit.x - 30}" y="${transit.y - 52}">${transit.label}</text>
         <text class="route-label" x="${destination.x - 40}" y="${destination.y + 24}">${destination.label}</text>
-        <circle class="route-vehicle" cx="${vehiclePos.x}" cy="${vehiclePos === transit ? vehiclePos.y - 40 : vehiclePos.y}" r="6" />
+        <circle class="route-vehicle" cx="${vehiclePos.x}" cy="${vehicleY}" r="6" />
       </svg>`;
   }
 
